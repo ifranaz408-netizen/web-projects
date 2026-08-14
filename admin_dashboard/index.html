@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NovaAdmin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>N</span>
+            NovaAdmin
+        </div>
+
+        <nav>
+
+            <button class="nav-link active" onclick="showPage('dashboard', this)">
+                Dashboard
+            </button>
+
+            <button class="nav-link" onclick="showPage('analytics', this)">
+                Analytics
+            </button>
+
+            <button class="nav-link" onclick="showPage('orders', this)">
+                Orders
+            </button>
+
+            <button class="nav-link" onclick="showPage('customers', this)">
+                Customers
+            </button>
+
+            <button class="nav-link" onclick="showPage('products', this)">
+                Products
+            </button>
+
+            <button class="nav-link" onclick="showPage('messages', this)">
+                Messages
+            </button>
+
+            <button class="nav-link" onclick="showPage('calendar', this)">
+                Calendar
+            </button>
+
+            <button class="nav-link" onclick="showPage('settings', this)">
+                Settings
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+    <button onclick="showPage('upgrade')">
+        Upgrade Plan
+    </button>
+
+    <button onclick="showPage('help')">
+        Help Center
+    </button>
+
+</div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Header -->
+        <header class="header">
+
+            <div>
+                <h1 id="page-title">Dashboard</h1>
+                <p>Welcome back, Alex</p>
+            </div>
+
+            <div class="header-right">
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search..."
+                >
+
+                <button class="header-btn" onclick="toggleNotifications()">
+                    🔔
+                    <span id="notification-count">3</span>
+                </button>
+
+                <button class="profile" onclick="showProfile()">
+                    <span class="avatar">AN</span>
+
+                    <div>
+                        <strong>Alex Morgan</strong>
+                        <small>Administrator</small>
+                    </div>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Notification Box -->
+        <div id="notification-box" class="notification-box">
+
+            <h3>Notifications</h3>
+
+            <p>New order received</p>
+            <p>New customer registered</p>
+            <p>Product stock is low</p>
+
+            <button onclick="markNotifications()">
+                Mark all as read
+            </button>
+
+        </div>
+
+
+        <!-- Pages -->
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="page active-page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Dashboard Overview</h2>
+                    <p>Here's what's happening with your business.</p>
+                </div>
+
+                <button class="primary-btn" onclick="exportReport()">
+                    Export Report
+                </button>
+            </div>
+
+
+            <!-- Stats -->
+            <div class="stats">
+
+                <div class="stat-card">
+                    <span class="stat-icon purple">💰</span>
+                    <p>Total Revenue</p>
+                    <h2>$84,254</h2>
+                    <small class="green">+12.5%</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon blue">🛒</span>
+                    <p>Total Orders</p>
+                    <h2>12,482</h2>
+                    <small class="green">+8.2%</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon green">👥</span>
+                    <p>Total Customers</p>
+                    <h2>8,549</h2>
+                    <small class="green">+5.7%</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon orange">📈</span>
+                    <p>Conversion Rate</p>
+                    <h2>6.84%</h2>
+                    <small class="red">-2.1%</small>
+                </div>
+
+            </div>
+
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-grid">
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Revenue Overview</h3>
+                            <p>Monthly revenue performance</p>
+                        </div>
+
+                        <select id="chart-select">
+                            <option>This Year</option>
+                            <option>Last 6 Months</option>
+                            <option>This Month</option>
+                        </select>
+                    </div>
+
+                    <div class="chart">
+
+                        <div class="bar" style="height:45%"></div>
+                        <div class="bar" style="height:60%"></div>
+                        <div class="bar" style="height:50%"></div>
+                        <div class="bar" style="height:72%"></div>
+                        <div class="bar" style="height:65%"></div>
+                        <div class="bar" style="height:82%"></div>
+                        <div class="bar" style="height:70%"></div>
+                        <div class="bar" style="height:90%"></div>
+                        <div class="bar" style="height:78%"></div>
+                        <div class="bar" style="height:95%"></div>
+                        <div class="bar" style="height:86%"></div>
+                        <div class="bar" style="height:100%"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Sales Overview</h3>
+                            <p>Sales by category</p>
+                        </div>
+                    </div>
+
+                    <div class="sales-circle">
+                        <div>
+                            <strong>$42.8K</strong>
+                            <span>Total Sales</span>
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <p><span class="purple-dot"></span> Electronics <b>42%</b></p>
+                        <p><span class="blue-dot"></span> Fashion <b>28%</b></p>
+                        <p><span class="green-dot"></span> Home & Living <b>18%</b></p>
+                        <p><span class="orange-dot"></span> Others <b>12%</b></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Recent Orders -->
+            <div class="card">
+
+                <div class="card-header">
+                    <div>
+                        <h3>Recent Orders</h3>
+                        <p>Latest transactions from your store</p>
+                    </div>
+
+                    <button onclick="showPage('orders')">
+                        View All
+                    </button>
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>#NV-4821</td>
+                                <td>Sarah Johnson</td>
+                                <td>AirPods Pro</td>
+                                <td>Aug 13, 2026</td>
+                                <td>$249</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#NV-4820</td>
+                                <td>Michael Wilson</td>
+                                <td>MacBook Air</td>
+                                <td>Aug 12, 2026</td>
+                                <td>$1,299</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>#NV-4819</td>
+                                <td>Emma Miller</td>
+                                <td>Smart Watch</td>
+                                <td>Aug 12, 2026</td>
+                                <td>$349</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Analytics -->
+        <section id="analytics" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Analytics</h2>
+                    <p>Business performance analytics.</p>
+                </div>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <p>Revenue</p>
+                    <h2>$84,254</h2>
+                    <small class="green">+12.5%</small>
+                </div>
+
+                <div class="stat-card">
+                    <p>Average Order</p>
+                    <h2>$486</h2>
+                    <small class="green">+6.8%</small>
+                </div>
+
+                <div class="stat-card">
+                    <p>Returning Customers</p>
+                    <h2>64.8%</h2>
+                    <small class="green">+4.3%</small>
+                </div>
+
+                <div class="stat-card">
+                    <p>Bounce Rate</p>
+                    <h2>31.4%</h2>
+                    <small class="green">-2.4%</small>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Performance Overview</h3>
+
+                <div class="big-chart">
+
+                    <div class="bar" style="height:50%"></div>
+                    <div class="bar" style="height:70%"></div>
+                    <div class="bar" style="height:60%"></div>
+                    <div class="bar" style="height:85%"></div>
+                    <div class="bar" style="height:75%"></div>
+                    <div class="bar" style="height:95%"></div>
+                    <div class="bar" style="height:80%"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Orders -->
+        <section id="orders" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Orders</h2>
+                    <p>Manage customer orders.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('New order form opened')">
+                    + New Order
+                </button>
+            </div>
+
+            <div class="card">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>#NV-4821</td>
+                            <td>Sarah Johnson</td>
+                            <td>AirPods Pro</td>
+                            <td>$249</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>#NV-4820</td>
+                            <td>Michael Wilson</td>
+                            <td>MacBook Air</td>
+                            <td>$1,299</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>#NV-4819</td>
+                            <td>Emma Miller</td>
+                            <td>Smart Watch</td>
+                            <td>$349</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Customers -->
+        <section id="customers" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Customers</h2>
+                    <p>Manage your customers.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('Add customer form opened')">
+                    + Add Customer
+                </button>
+            </div>
+
+            <div class="card">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Orders</th>
+                            <th>Total Spent</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Sarah Johnson</td>
+                            <td>sarah@example.com</td>
+                            <td>124</td>
+                            <td>$8,420</td>
+                        </tr>
+
+                        <tr>
+                            <td>Michael Wilson</td>
+                            <td>michael@example.com</td>
+                            <td>89</td>
+                            <td>$5,920</td>
+                        </tr>
+
+                        <tr>
+                            <td>Emma Miller</td>
+                            <td>emma@example.com</td>
+                            <td>76</td>
+                            <td>$4,830</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Products -->
+        <section id="products" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Products</h2>
+                    <p>Manage products and inventory.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('Add product form opened')">
+                    + Add Product
+                </button>
+            </div>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <div class="product-image">🎧</div>
+                    <h3>AirPods Pro</h3>
+                    <p>1,284 sold</p>
+                    <strong>$249</strong>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">💻</div>
+                    <h3>MacBook Air</h3>
+                    <p>982 sold</p>
+                    <strong>$1,299</strong>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">⌚</div>
+                    <h3>Smart Watch</h3>
+                    <p>847 sold</p>
+                    <strong>$349</strong>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">⌨️</div>
+                    <h3>Mechanical Keyboard</h3>
+                    <p>621 sold</p>
+                    <strong>$129</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Messages -->
+        <section id="messages" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Messages</h2>
+                    <p>Customer conversations.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('Message composer opened')">
+                    + Compose
+                </button>
+            </div>
+
+            <div class="card messages">
+
+                <div class="message">
+                    <span class="avatar">SJ</span>
+                    <div>
+                        <strong>Sarah Johnson</strong>
+                        <p>Can you tell me when my order will arrive?</p>
+                        <small>5 minutes ago</small>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <span class="avatar">MW</span>
+                    <div>
+                        <strong>Michael Wilson</strong>
+                        <p>I need help with my invoice.</p>
+                        <small>32 minutes ago</small>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <span class="avatar">EM</span>
+                    <div>
+                        <strong>Emma Miller</strong>
+                        <p>Thank you for the quick support!</p>
+                        <small>1 hour ago</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Calendar -->
+        <section id="calendar" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Calendar</h2>
+                    <p>August 2026</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('New event form opened')">
+                    + Add Event
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <div class="calendar">
+
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>7</button>
+
+                    <button>8</button>
+                    <button>9</button>
+                    <button>10</button>
+                    <button>11</button>
+                    <button>12</button>
+                    <button class="today">13</button>
+                    <button>14</button>
+
+                    <button>15</button>
+                    <button>16</button>
+                    <button>17</button>
+                    <button>18</button>
+                    <button>19</button>
+                    <button>20</button>
+                    <button>21</button>
+
+                    <button>22</button>
+                    <button>23</button>
+                    <button>24</button>
+                    <button>25</button>
+                    <button>26</button>
+                    <button>27</button>
+                    <button>28</button>
+
+                    <button>29</button>
+                    <button>30</button>
+                    <button>31</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Settings -->
+        <section id="settings" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Settings</h2>
+                    <p>Manage your dashboard settings.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('Settings saved successfully')">
+                    Save Changes
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <div class="setting">
+
+                    <div>
+                        <strong>Email Notifications</strong>
+                        <p>Receive notifications about orders.</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span></span>
+                    </label>
+
+                </div>
+
+                <div class="setting">
+
+                    <div>
+                        <strong>Weekly Reports</strong>
+                        <p>Receive weekly business reports.</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span></span>
+                    </label>
+
+                </div>
+
+                <div class="setting">
+
+                    <div>
+                        <strong>Marketing Alerts</strong>
+                        <p>Receive marketing notifications.</p>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span></span>
+                    </label>
+
+                </div>
+
+            </div>
+            </section>
+            <!-- Upgrade Plan -->
+<section id="upgrade" class="page">
+
+    <div class="page-heading">
+        <div>
+            <h2>Upgrade Plan</h2>
+            <p>Choose a plan that works for your business.</p>
+        </div>
+    </div>
+
+    <div class="plans">
+
+        <div class="plan-card">
+
+            <h3>Free</h3>
+
+            <h2>$0 <span>/month</span></h2>
+
+            <p>For small projects and beginners.</p>
+
+            <ul>
+                <li>✓ 1 Admin User</li>
+                <li>✓ Basic Dashboard</li>
+                <li>✓ Basic Analytics</li>
+                <li>✓ Email Support</li>
+            </ul>
+
+            <button onclick="showMessage('You are already using the Free plan')">
+                Current Plan
+            </button>
+
+        </div>
+
+
+        <div class="plan-card popular">
+
+            <div class="popular-label">
+                Popular
+            </div>
+
+            <h3>Pro</h3>
+
+            <h2>$29 <span>/month</span></h2>
+
+            <p>For growing businesses.</p>
+
+            <ul>
+                <li>✓ 5 Admin Users</li>
+                <li>✓ Advanced Dashboard</li>
+                <li>✓ Advanced Analytics</li>
+                <li>✓ Priority Support</li>
+            </ul>
+
+            <button onclick="showMessage('Pro plan selected')">
+                Upgrade to Pro
+            </button>
+
+        </div>
+
+
+        <div class="plan-card">
+
+            <h3>Business</h3>
+
+            <h2>$79 <span>/month</span></h2>
+
+            <p>For larger businesses.</p>
+
+            <ul>
+                <li>✓ Unlimited Users</li>
+                <li>✓ Advanced Analytics</li>
+                <li>✓ Custom Reports</li>
+                <li>✓ Premium Support</li>
+            </ul>
+
+            <button onclick="showMessage('Business plan selected')">
+                Choose Business
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Help Center -->
+<section id="help" class="page">
+
+    <div class="page-heading">
+
+        <div>
+            <h2>Help Center</h2>
+            <p>Find answers and get support.</p>
+        </div>
+
+    </div>
+
+    <div class="help-search">
+
+        <input
+            type="text"
+            id="help-search"
+            placeholder="Search for help..."
+        >
+
+        <button onclick="searchHelp()">
+            Search
+        </button>
+
+    </div>
+
+
+    <div class="help-grid">
+
+        <div class="help-card">
+
+            <div class="help-icon">📊</div>
+
+            <h3>Dashboard</h3>
+
+            <p>
+                Learn how to use your dashboard
+                and view your business data.
+            </p>
+
+            <button onclick="showMessage('Dashboard guide opened')">
+                Read Guide
+            </button>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-icon">🛒</div>
+
+            <h3>Orders</h3>
+
+            <p>
+                Learn how to manage and track
+                customer orders.
+            </p>
+
+            <button onclick="showMessage('Orders guide opened')">
+                Read Guide
+            </button>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-icon">👥</div>
+
+            <h3>Customers</h3>
+
+            <p>
+                Learn how to manage customer
+                information.
+            </p>
+
+            <button onclick="showMessage('Customers guide opened')">
+                Read Guide
+            </button>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-icon">⚙️</div>
+
+            <h3>Settings</h3>
+
+            <p>
+                Learn how to customize your
+                dashboard settings.
+            </p>
+
+            <button onclick="showMessage('Settings guide opened')">
+                Read Guide
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="contact-help">
+
+        <h3>Still need help?</h3>
+
+        <p>
+            Our support team is ready to help you.
+        </p>
+
+        <button
+            class="primary-btn"
+            onclick="showMessage('Support request submitted')"
+        >
+            Contact Support
+        </button>
+
+    </div>
+
+
+
+        </section>
+
+
+        <!-- Profile -->
+        <section id="profile" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>My Profile</h2>
+                    <p>Manage your administrator profile.</p>
+                </div>
+
+                <button class="primary-btn" onclick="showMessage('Profile edit mode opened')">
+                    Edit Profile
+                </button>
+
+            </div>
+
+            <div class="profile-card">
+
+                <div class="large-avatar">
+                    AN
+                </div>
+
+                <h2>Alex Morgan</h2>
+
+                <p>Administrator</p>
+
+                <hr>
+
+                <div>
+                    <strong>Email</strong>
+                    <p>alex@novaadmin.com</p>
+                </div>
+
+                <div>
+                    <strong>Member Since</strong>
+                    <p>January 2026</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
