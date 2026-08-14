@@ -1,0 +1,985 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PixelForge - Professional online image converter, resizer and editor."
+    >
+
+    <meta
+        name="keywords"
+        content="image converter, PNG converter, JPG converter, image resizer, background remover, image editor"
+    >
+
+    <meta
+        name="author"
+        content="Ifra Naz"
+    >
+
+    <title>PixelForge — Image Studio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="container header-container">
+
+        <a
+            href="#"
+            class="brand"
+        >
+
+            <div class="brand-logo">
+                P
+            </div>
+
+            <span class="brand-name">
+                Pixel<span>Forge</span>
+            </span>
+
+        </a>
+
+
+        <div class="header-actions">
+
+            <span class="header-badge">
+                <span class="status-dot"></span>
+                Browser Image Studio
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="container hero-container">
+
+        <span class="hero-label">
+            PROFESSIONAL IMAGE STUDIO
+        </span>
+
+
+        <h1>
+            change your image as you 
+            <span> LIKE </span>
+        </h1>
+
+
+        <p>
+            Upload your image and transform it with powerful
+            editing, resizing, conversion and optimization tools.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     IMAGE UPLOAD + WORKSPACE
+===================================================== -->
+
+<section class="image-studio">
+
+    <div class="container">
+
+
+        <!-- =================================================
+             UPLOAD / PREVIEW AREA
+        ================================================== -->
+
+        <div
+            class="main-upload-area"
+            id="dropZone"
+        >
+
+
+            <!-- Empty Upload State -->
+
+            <div
+                class="upload-content"
+                id="uploadContent"
+            >
+
+                <div class="large-upload-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M12 16V4"
+                        />
+
+                        <path
+                            d="m7 9 5-5 5 5"
+                        />
+
+                        <path
+                            d="M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <h2>
+                    Drag & Drop your image here
+                </h2>
+
+
+                <p>
+                    or click the button below to browse
+                </p>
+
+
+                <button
+                    type="button"
+                    class="browse-button large"
+                    id="browseButton"
+                >
+                    Choose Image
+                </button>
+
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    hidden
+                >
+
+
+                <span class="upload-note">
+                    PNG · JPG · JPEG · WEBP · GIF
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 IMAGE PREVIEW
+            ================================================== -->
+
+            <div
+                class="image-preview-area"
+                id="previewArea"
+            >
+
+                <div class="preview-toolbar">
+
+                    <div class="preview-status">
+
+                        <span class="status-dot"></span>
+
+                        <span id="status">
+                            Image Ready
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="change-image-button"
+                        id="changeImageButton"
+                    >
+                        Change Image
+                    </button>
+
+                </div>
+
+
+                <div class="canvas-wrapper">
+
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                    >
+
+                        <div class="empty-icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <rect
+                                    x="3"
+                                    y="3"
+                                    width="18"
+                                    height="18"
+                                    rx="3"
+                                />
+
+                                <circle
+                                    cx="8.5"
+                                    cy="8.5"
+                                    r="1.5"
+                                />
+
+                                <path
+                                    d="m21 15-5-5L5 21"
+                                />
+
+                            </svg>
+
+                        </div>
+
+
+                        <h3>
+                            Your image preview
+                        </h3>
+
+                        <p>
+                            Upload an image to get started
+                        </p>
+
+                    </div>
+
+
+                    <canvas
+                        id="canvas"
+                        aria-label="Processed image preview"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- Image information -->
+
+                <div class="image-information">
+
+                    <div class="info-card">
+
+                        <span>
+                            Original
+                        </span>
+
+                        <strong id="originalInfo">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <span>
+                            Output
+                        </span>
+
+                        <strong id="outputInfo">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <span>
+                            Format
+                        </span>
+
+                        <strong id="formatInfo">
+                            PNG
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <span>
+                            File Size
+                        </span>
+
+                        <strong id="fileSizeInfo">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EDITING COMMANDS
+        ================================================== -->
+
+        <div class="editor-panel">
+
+
+            <!-- =================================================
+                 PANEL HEADER
+            ================================================== -->
+
+            <div class="editor-header">
+
+                <div>
+
+                    <span class="workspace-label">
+                        EDITOR
+                    </span>
+
+                    <h2>
+                        Image Controls
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="reset-button"
+                    id="resetButton"
+                >
+                    Reset All
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 COMMAND GRID
+            ================================================== -->
+
+            <div class="commands-grid">
+
+
+                <!-- FORMAT -->
+
+                <div class="command-card">
+
+                    <div class="command-icon">
+                        ⇄
+                    </div>
+
+                    <div class="command-content">
+
+                        <label for="format">
+                            Convert Format
+                        </label>
+
+                        <select
+                            id="format"
+                            class="control-input"
+                        >
+
+                            <option value="image/png">
+                                PNG
+                            </option>
+
+                            <option value="image/jpeg">
+                                JPG
+                            </option>
+
+                            <option value="image/webp">
+                                WEBP
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+    
+
+
+
+                <!-- RESIZE -->
+
+                <div class="command-card wide-command">
+
+                    <div class="command-icon">
+                        ↗
+                    </div>
+
+                    <div class="command-content">
+
+                        <label>
+                            Resize Image
+                        </label>
+
+
+                        <div class="dimension-controls">
+
+                            <div class="input-wrapper">
+
+                                <span>
+                                    W
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="width"
+                                    min="1"
+                                    placeholder="Width"
+                                >
+
+                                <small>
+                                    px
+                                </small>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="lock-button active"
+                                id="lockRatio"
+                                title="Lock aspect ratio"
+                                aria-label="Lock aspect ratio"
+                            >
+                                🔒
+                            </button>
+
+
+                            <div class="input-wrapper">
+
+                                <span>
+                                    H
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="height"
+                                    min="1"
+                                    placeholder="Height"
+                                >
+
+                                <small>
+                                    px
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ASPECT RATIO -->
+
+                <div class="command-card wide-command">
+
+                    <div class="command-icon">
+                        ⛶
+                    </div>
+
+                    <div class="command-content">
+
+                        <label>
+                            Aspect Ratio
+                        </label>
+
+
+                        <div class="ratio-grid">
+
+                            <button
+                                type="button"
+                                class="ratio-button active"
+                                data-ratio="free"
+                            >
+                                Free
+                            </button>
+
+                            <button
+                                type="button"
+                                class="ratio-button"
+                                data-ratio="1"
+                            >
+                                1:1
+                            </button>
+
+                            <button
+                                type="button"
+                                class="ratio-button"
+                                data-ratio="1.7777778"
+                            >
+                                16:9
+                            </button>
+
+                            <button
+                                type="button"
+                                class="ratio-button"
+                                data-ratio="1.3333333"
+                            >
+                                4:3
+                            </button>
+
+                            <button
+                                type="button"
+                                class="ratio-button"
+                                data-ratio="0.8"
+                            >
+                                4:5
+                            </button>
+
+                            <button
+                                type="button"
+                                class="ratio-button"
+                                data-ratio="0.5625"
+                            >
+                                9:16
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BLUR -->
+
+                <div class="command-card">
+
+                    <div class="command-icon">
+                        ◌
+                    </div>
+
+                    <div class="command-content">
+
+                        <div class="control-heading">
+
+                            <label for="blur">
+                                Blur
+                            </label>
+
+                            <span
+                                id="blurValue"
+                                class="control-value"
+                            >
+                                0px
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            type="range"
+                            id="blur"
+                            class="range-input"
+                            min="0"
+                            max="20"
+                            value="0"
+                            step="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUALITY -->
+
+                <div class="command-card">
+
+                    <div class="command-icon">
+                        ◈
+                    </div>
+
+                    <div class="command-content">
+
+                        <div class="control-heading">
+
+                            <label for="quality">
+                                Quality
+                            </label>
+
+                            <span
+                                id="qualityValue"
+                                class="control-value"
+                            >
+                                90%
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            type="range"
+                            id="quality"
+                            class="range-input"
+                            min="10"
+                            max="100"
+                            value="90"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FIT MODE -->
+
+                <div class="command-card">
+
+                    <div class="command-icon">
+                        ⊞
+                    </div>
+
+                    <div class="command-content">
+
+                        <label for="fitMode">
+                            Resize Mode
+                        </label>
+
+                        <select
+                            id="fitMode"
+                            class="control-input"
+                        >
+
+                            <option value="contain">
+                                Contain
+                            </option>
+
+                            <option value="cover">
+                                Cover
+                            </option>
+
+                            <option value="stretch">
+                                Stretch
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ROTATE -->
+
+                <div class="command-card">
+
+                    <div class="command-icon">
+                        ↻
+                    </div>
+
+                    <div class="command-content">
+
+                        <label>
+                            Rotate
+                        </label>
+
+                        <div class="rotate-buttons">
+
+                            <button
+                                type="button"
+                                class="small-tool-button"
+                                id="rotateLeft"
+                            >
+                                ↺ 90°
+                            </button>
+
+                            <button
+                                type="button"
+                                class="small-tool-button"
+                                id="rotateRight"
+                            >
+                                ↻ 90°
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FLIP -->
+
+                <div class="command-card">
+
+                    <div class="command-icon">
+                        ⇆
+                    </div>
+
+                    <div class="command-content">
+
+                        <label>
+                            Flip
+                        </label>
+
+                        <div class="rotate-buttons">
+
+                            <button
+                                type="button"
+                                class="small-tool-button"
+                                id="flipHorizontal"
+                            >
+                                Horizontal
+                            </button>
+
+                            <button
+                                type="button"
+                                class="small-tool-button"
+                                id="flipVertical"
+                            >
+                                Vertical
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RESOLUTION PRESETS
+            ================================================== -->
+
+            <div class="resolution-section">
+
+                <div class="section-title">
+
+                    <div>
+
+                        <span>
+                            RESOLUTION
+                        </span>
+
+                        <h3>
+                            Quick Presets
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="preset-grid">
+
+                    <button
+                        type="button"
+                        class="preset-button"
+                        data-width="1280"
+                        data-height="720"
+                    >
+
+                        <strong>
+                            HD
+                        </strong>
+
+                        <small>
+                            1280 × 720
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="preset-button"
+                        data-width="1920"
+                        data-height="1080"
+                    >
+
+                        <strong>
+                            Full HD
+                        </strong>
+
+                        <small>
+                            1920 × 1080
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="preset-button"
+                        data-width="2560"
+                        data-height="1440"
+                    >
+
+                        <strong>
+                            2K
+                        </strong>
+
+                        <small>
+                            2560 × 1440
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="preset-button premium-preset"
+                        data-width="3840"
+                        data-height="2160"
+                    >
+
+                        <strong>
+                            4K
+                        </strong>
+
+                        <small>
+                            3840 × 2160
+                        </small>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DOWNLOAD AREA
+            ================================================== -->
+
+            <div class="download-section">
+
+                <div class="download-info">
+
+                    <span>
+                        Ready to export?
+                    </span>
+
+                    <strong>
+                        Download your processed image
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="download-button"
+                    id="downloadButton"
+                    disabled
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M12 4v11"
+                        />
+
+                        <path
+                            d="m7 10 5 5 5-5"
+                        />
+
+                        <path
+                            d="M5 20h14"
+                        />
+
+                    </svg>
+
+                    Download Image
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <p>
+            PixelForge — Professional Image Studio
+        </p>
+
+        <span>
+            Built with HTML, CSS & JavaScript
+        </span>
+
+    </div>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
